@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ApplyKit</title>
+  <link rel="stylesheet" href="../ui/ui.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <div class="title">ApplyKit</div>
+      <div class="host" id="host"></div>
+    </div>
+    <button class="text" id="openOptions">Manage answers</button>
+  </header>
+
+  <section class="block">
+    <div class="fillrow">
+      <div>
+        <div class="stat" id="statLine">Checking this page…</div>
+        <div class="sub" id="statSub"></div>
+      </div>
+      <button class="primary" id="fillBtn" disabled>Fill page</button>
+    </div>
+    <div class="hint">Shortcut: Alt+Shift+F. You can also click any field to see suggestions.</div>
+  </section>
+
+  <h3 class="ghead" id="appTitle">Add to applications</h3>
+  <section class="group">
+    <label class="prow"><span>Type</span>
+      <span class="seg" id="aType"><button data-type="college">College</button><button data-type="job">Job</button></span></label>
+    <label class="prow"><span id="lSchool">School</span><input type="text" id="aSchool" /></label>
+    <label class="prow"><span id="lProgram">Program</span><input type="text" id="aProgram" /></label>
+    <label class="prow"><span>Deadline</span><input type="date" id="aDeadline" /></label>
+    <label class="prow"><span>Status</span><select id="aStatus"></select></label>
+  </section>
+  <div class="actions">
+    <span class="saved" id="appSaved"></span>
+    <button class="text" id="openTracker">All applications</button>
+    <button id="appSave">Add</button>
+  </div>
+
+  <label class="offrow"><span>Turn off on this website</span><span class="switch"><input type="checkbox" id="pause" /><span></span></span></label>
+
+  <script src="../shared/choices.js"></script>
+  <script src="../shared/fields.js"></script>
+  <script src="../shared/matcher.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

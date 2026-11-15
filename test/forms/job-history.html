@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Careers | Example Co.</title>
+  <style>
+    body { font: 14px Arial, sans-serif; max-width: 720px; margin: 24px auto; padding: 0 16px; color: #222; }
+    h2 { font-size: 17px; margin-top: 26px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    .entry { border: 1px solid #ddd; padding: 10px 12px; margin: 10px 0; }
+    .entry-title { font-weight: bold; margin-bottom: 6px; }
+    .f { margin: 6px 0; } .f label { display: block; font-size: 13px; margin-bottom: 2px; }
+    input[type=text], input[type=email], select { width: 100%; padding: 6px; box-sizing: border-box; }
+    .pair { display: flex; gap: 8px; } .pair > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>Apply: Data Analyst</h1>
+  <div class="f"><label for="pos">Position applied for</label><input type="text" id="pos" /></div>
+
+  <h2>Personal information</h2>
+  <div class="f"><label for="sal">Title</label><select id="sal"><option value="">--</option><option>Mr.</option><option>Ms.</option><option>Mx.</option><option>Dr.</option></select></div>
+  <div class="f"><label for="fn">First name</label><input type="text" id="fn" /></div>
+  <div class="f"><label for="ln">Last name</label><input type="text" id="ln" /></div>
+  <div class="f"><label for="em">Email</label><input type="email" id="em" /></div>
+  <div class="pair">
+    <div class="f"><label for="cc">Country code</label><select id="cc"><option value="">--</option><option>+1</option><option>+44</option><option>+61</option></select></div>
+    <div class="f"><label for="ph">Phone number</label><input type="text" id="ph" /></div>
+  </div>
+  <div class="f"><label for="pcity">City</label><input type="text" id="pcity" /></div>
+
+  <h2>Education</h2>
+  <div class="entry" data-edu>
+    <div class="f"><label>School<input type="text" class="school" /></label></div>
+    <div class="f"><label>Degree<select class="degree"><option value="">Select</option><option>Associate's Degree</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Doctorate</option></select></label></div>
+    <div class="f"><label>City<input type="text" class="ecity" /></label></div>
+    <div class="pair">
+      <div class="f"><label>Start month<select class="smonth"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select></label></div>
+      <div class="f"><label>Start year<input type="text" class="syear" /></label></div>
+    </div>
+    <div class="f"><label>End date (MM/YYYY)<input type="text" class="end" placeholder="MM/YYYY" /></label></div>
+  </div>
+  <div class="entry" data-edu>
+    <div class="f"><label>School<input type="text" class="school" /></label></div>
+    <div class="f"><label>Degree<select class="degree"><option value="">Select</option><option>Associate's Degree</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Doctorate</option></select></label></div>
+    <div class="f"><label>City<input type="text" class="ecity" /></label></div>
+    <div class="pair">
+      <div class="f"><label>Start month<select class="smonth"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select></label></div>
+      <div class="f"><label>Start year<input type="text" class="syear" /></label></div>
+    </div>
+    <div class="f"><label>End date (MM/YYYY)<input type="text" class="end" placeholder="MM/YYYY" /></label></div>
+  </div>
+
+  <h2>Work experience</h2>
+  <div class="entry" data-work>
+    <div class="entry-title">Employer 1</div>
+    <div class="f"><label>Company<input type="text" class="co" /></label></div>
+    <div class="f"><label>Title<input type="text" class="ti" /></label></div>
+    <div class="f"><label><input type="checkbox" class="cur" /> I currently work here</label></div>
+  </div>
+  <div class="entry" data-work>
+    <div class="entry-title">Employer 2</div>
+    <div class="f"><label>Company<input type="text" class="co" /></label></div>
+    <div class="f"><label>Title<input type="text" class="ti" /></label></div>
+    <div class="f"><label><input type="checkbox" class="cur" /> I currently work here</label></div>
+  </div>
+
+  <h2>References</h2>
+  <div class="f"><label for="rn">Name</label><input type="text" id="rn" /></div>
+  <div class="f"><label for="re">Email</label><input type="email" id="re" /></div>
+
+  <h2>Eligibility</h2>
+  <fieldset><legend>Are you legally authorized to work in the United States?</legend>
+    <label><input type="radio" name="auth" value="yes" /> Yes</label> <label><input type="radio" name="auth" value="no" /> No</label></fieldset>
+  <fieldset><legend>Will you now or in the future require sponsorship?</legend>
+    <label><input type="radio" name="spon" value="yes" /> Yes</label> <label><input type="radio" name="spon" value="no" /> No</label></fieldset>
+  <fieldset><legend>Preferred work arrangement</legend>
+    <label><input type="checkbox" class="wm" value="remote" /> Remote</label>
+    <label><input type="checkbox" class="wm" value="hybrid" /> Hybrid</label>
+    <label><input type="checkbox" class="wm" value="onsite" /> On-site</label></fieldset>
+  <div class="f"><label for="gen">Gender</label><select id="gen"><option value="">Select</option><option>Male</option><option>Female</option><option>Decline to self-identify</option></select></div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ApplyKit</title>
+  <link rel="stylesheet" href="../ui/ui.css" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-chev" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" /></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path d="M8 12.5V3.5M4 7.5l4-4 4 4" /></symbol>
+    <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 3.5v9M4 8.5l4 4 4-4" /></symbol>
+    <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></symbol>
+    <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></symbol>
+    <symbol id="i-out" viewBox="0 0 16 16"><path d="M9.5 3.5h3v3M12.5 3.5L7.5 8.5M11 9.5v3H3.5V5h3" /></symbol>
+    <symbol id="i-search" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2l3.3 3.3" /></symbol>
+  </svg>
+
+  <aside>
+    <div class="app-name">ApplyKit</div>
+    <nav id="nav">
+      <a href="#profile" data-tab="profile">My answers</a>
+      <div class="subnav" id="secNav"></div>
+      <a href="#tracker" data-tab="tracker">Applications</a>
+      <a href="#learned" data-tab="learned">Learned wordings</a>
+      <a href="#settings" data-tab="settings">Settings</a>
+    </nav>
+    <p class="side-foot">Your answers are stored on this computer and never leave it.</p>
+  </aside>
+
+  <main>
+    <section id="welcome" class="group welcome" hidden>
+      <h2>Getting started</h2>
+      <p>Fill in the answers you give on most applications. Skip anything you don't want filled in.</p>
+      <p>On an application form, click a field and ApplyKit suggests your answer, the same way your browser suggests passwords. If a form asks something in an unusual way, pick the right answer once and ApplyKit remembers that wording from then on.</p>
+      <button class="primary" id="welcomeOk">Start</button>
+    </section>
+
+    <!-- My answers -->
+    <section data-panel="profile">
+      <header class="page">
+        <h1>My answers</h1>
+        <label class="search"><svg class="i"><use href="#i-search" /></svg><input type="search" id="profileSearch" placeholder="Search" /></label>
+      </header>
+      <div class="audience">
+        <span>Show fields for</span>
+        <div class="seg" id="audienceSeg">
+          <button data-aud="both">Everything</button>
+          <button data-aud="college">College &amp; grad school</button>
+          <button data-aud="job">Jobs</button>
+        </div>
+      </div>
+      <div id="profileSections"></div>
+    </section>
+
+    <!-- Tracker -->
+    <section data-panel="tracker" hidden>
+      <header class="page">
+        <h1>Applications</h1>
+        <div class="tools">
+          <label class="filebtn">Import CSV<input type="file" id="importCsv" accept=".csv,text/csv" hidden /></label>
+          <button id="exportCsv">Export CSV</button>
+          <button class="primary" id="addApp">New application</button>
+        </div>
+      </header>
+      <div class="filters">
+        <div class="seg" id="typeFilter">
+          <button data-type="">All</button><button data-type="college">College</button><button data-type="job">Jobs</button>
+        </div>
+        <select id="statusFilter"><option value="">Any status</option></select>
+        <p class="summary muted" id="trackerSummary"></p>
+      </div>
+      <div class="group tablewrap">
+        <table id="appTable">
+          <thead>
+            <tr>
+              <th data-sort="school">Organization</th>
+              <th data-sort="program">Program or role</th>
+              <th data-sort="type">Type</th>
+              <th data-sort="deadline">Deadline</th>
+              <th data-sort="status">Status</th>
+              <th data-sort="fee" class="num">Fee</th>
+              <th class="center">Paid</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty" id="appEmpty" hidden>No applications yet. Add one here, or click the ApplyKit button in your browser toolbar while you're on an application page.</div>
+      </div>
+    </section>
+
+    <!-- Learned -->
+    <section data-panel="learned" hidden>
+      <header class="page"><h1>Learned wordings</h1></header>
+      <p class="lede muted">When you show ApplyKit what an unfamiliar question means, it is listed here. You can change or remove any of them.</p>
+      <div class="group tablewrap">
+        <table id="aliasTable">
+          <thead><tr><th>Question on the form</th><th>Answer it with</th><th>Website</th><th class="num">Used</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty" id="aliasEmpty" hidden>Nothing yet. New wordings appear here as you fill in forms.</div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section data-panel="settings" hidden>
+      <header class="page"><h1>Settings</h1></header>
+      <h3 class="ghead">Filling forms</h3>
+      <div class="group">
+        <label class="srow"><span><b>Suggest answers when I click a field</b><small>Shows a menu under fields ApplyKit recognises.</small></span><span class="switch"><input type="checkbox" data-setting="showOnFocus" /><span></span></span></label>
+        <label class="srow"><span><b>Learn new wordings automatically</b><small>If you type a saved answer into a field ApplyKit didn't recognise, it remembers the question.</small></span><span class="switch"><input type="checkbox" data-setting="learnSilently" /><span></span></span></label>
+        <label class="srow"><span><b>Offer to save new answers</b><small>Asks before keeping something you typed that isn't saved yet.</small></span><span class="switch"><input type="checkbox" data-setting="offerToSave" /><span></span></span></label>
+        <label class="srow"><span><b>Tint filled fields</b><small>Makes it easy to check what was filled before you submit.</small></span><span class="switch"><input type="checkbox" data-setting="highlightFilled" /><span></span></span></label>
+      </div>
+
+      <h3 class="ghead">Turned off on these websites</h3>
+      <div class="group" id="disabledHosts"></div>
+
+      <h3 class="ghead">Your data</h3>
+      <div class="group">
+        <div class="srow"><span><b>Back up</b><small>Saves your answers, applications and learned wordings to one file.</small></span><button id="exportAll">Download backup</button></div>
+        <div class="srow"><span><b>Restore</b><small>Replaces everything with a backup file.</small></span><label class="filebtn">Choose file…<input type="file" id="importAll" accept=".json,application/json" hidden /></label></div>
+        <div class="srow"><span><b>Erase everything</b><small>Deletes all ApplyKit data from this browser.</small></span><button class="danger" id="resetAll">Erase…</button></div>
+      </div>
+      <p class="colophon muted small">ApplyKit is open source under the MIT license. Built with the help of Claude.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="../shared/choices.js"></script>
+  <script src="../shared/fields.js"></script>
+  <script src="../shared/matcher.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="csv.js"></script>
+  <script src="profile.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

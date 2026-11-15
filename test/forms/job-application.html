@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Apply — Software Engineer — Example Corp</title>
+  <style>
+    body { font: 14px system-ui, sans-serif; background: #f5f6f8; margin: 0; }
+    .wrap { max-width: 640px; margin: 30px auto; background: #fff; padding: 24px 28px; border-radius: 10px; }
+    .f { margin: 10px 0; display: flex; flex-direction: column; gap: 4px; }
+    input, textarea { padding: 9px; border: 1px solid #ccd; border-radius: 6px; font: inherit; }
+    iframe { width: 100%; height: 170px; border: 1px dashed #ccd; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Software Engineer</h1>
+    <!-- aria-label only, autocomplete hints -->
+    <div class="f"><span>First</span><input aria-label="First name" autocomplete="given-name" /></div>
+    <div class="f"><span>Last</span><input aria-label="Last name" autocomplete="family-name" /></div>
+    <div class="f"><span id="lbl-li">LinkedIn Profile</span><input aria-labelledby="lbl-li" /></div>
+    <div class="f"><span id="lbl-gh">GitHub or portfolio URL</span><input aria-labelledby="lbl-gh" /></div>
+    <!-- a custom element with an open shadow root, like many design systems -->
+    <fancy-input label="Current Company"></fancy-input>
+    <fancy-input label="Phone"></fancy-input>
+    <p>The part below is in an iframe (like Workday or Greenhouse embeds):</p>
+    <iframe src="embedded.html"></iframe>
+  </div>
+  <script>
+    customElements.define('fancy-input', class extends HTMLElement {
+      connectedCallback() {
+        const r = this.attachShadow({ mode: 'open' });
+        r.innerHTML = `<style>label{display:flex;flex-direction:column;gap:4px;margin:10px 0;font:14px system-ui}input{padding:9px;border:1px solid #ccd;border-radius:6px}</style><label>${this.getAttribute('label')}<input></label>`;
+      }
+    });
+  </script>
+</body>
+</html>

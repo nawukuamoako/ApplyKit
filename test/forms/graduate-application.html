@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Graduate Application | Example State University</title>
+  <style>
+    body { font: 15px/1.5 Georgia, serif; max-width: 760px; margin: 30px auto; padding: 0 20px; color: #222; }
+    h1 { font-size: 24px; } h2 { font-size: 18px; border-bottom: 2px solid #8b0000; padding-bottom: 4px; margin-top: 28px; }
+    .q { margin: 12px 0; } .q label { display: block; font-weight: bold; margin-bottom: 4px; }
+    input[type=text], input[type=email], input[type=tel], input[type=date], select, textarea { width: 100%; padding: 7px; border: 1px solid #aaa; border-radius: 3px; font: inherit; box-sizing: border-box; }
+    table td { padding: 6px 8px; } .req { color: #b00; }
+    #preview { background: #f4f4f4; padding: 10px; font: 12px monospace; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Example State University — Graduate Application</h1>
+  <p>This is a test form with different wordings and layouts, to check that ApplyKit works.</p>
+
+  <form id="app" onsubmit="return false">
+    <h2>Personal information</h2>
+    <div class="q"><label for="f1">Legal First Name <span class="req">*</span></label><input type="text" id="f1" name="field_1001" /></div>
+    <div class="q"><label for="f2">Surname (as shown on passport) <span class="req">*</span></label><input type="text" id="f2" name="field_1002" /></div>
+    <div class="q"><label for="f3">Preferred name</label><input type="text" id="f3" name="pref" /></div>
+    <div class="q"><label for="f4">Date of Birth</label><input type="date" id="f4" name="dob" /></div>
+    <fieldset class="q">
+      <legend><b>Sex</b></legend>
+      <label><input type="radio" name="sex" value="M" /> Male</label>
+      <label><input type="radio" name="sex" value="F" /> Female</label>
+      <label><input type="radio" name="sex" value="X" /> Another identity</label>
+    </fieldset>
+    <div class="q"><label for="cit">Country of Citizenship</label>
+      <select id="cit" name="citizenship"><option value="">-- Select --</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="US">United States of America</option></select></div>
+
+    <h2>Contact</h2>
+    <!-- table layout with no <label> elements -->
+    <table>
+      <tr><td>E-mail Address:</td><td><input type="email" name="contact_em" /></td></tr>
+      <tr><td>Cell / Mobile:</td><td><input type="tel" name="contact_ph" /></td></tr>
+    </table>
+    <div class="q"><input type="text" name="addr" placeholder="Street address" /></div>
+    <div class="q"><input type="text" name="city" placeholder="City" /></div>
+    <div class="q"><label for="st">State</label>
+      <select id="st" name="st"><option value="">Choose…</option><option value="IL">IL</option><option value="IN">IN</option><option value="OH">OH</option></select></div>
+    <div class="q"><label for="zip">Postal / ZIP</label><input type="text" id="zip" name="zip" /></div>
+
+    <h2>Academic history</h2>
+    <div class="q"><label for="u1">Name of college or university attended</label><input type="text" id="u1" /></div>
+    <div class="q"><label for="u2">Overall GPA</label><input type="text" id="u2" /></div>
+    <div class="q"><label for="u3">Anticipated graduation (MM/DD/YYYY)</label><input type="text" id="u3" placeholder="MM/DD/YYYY" /></div>
+
+    <h2>Recommenders</h2>
+    <div class="q"><label for="r1">Recommender name</label><input type="text" id="r1" /></div>
+    <div class="q"><label for="r2">Recommender email</label><input type="email" id="r2" /></div>
+
+    <h2>Program questions</h2>
+    <div class="q"><label for="p1">Describe your research focus</label><textarea id="p1" rows="3"></textarea></div>
+    <div class="q"><label for="p2">Which faculty member would you like to work with?</label><input type="text" id="p2" /></div>
+    <div class="q"><label for="p3">Social Security Number</label><input type="text" id="p3" /></div>
+    <div class="q"><label for="p4">Your favourite programming language</label><input type="text" id="p4" /></div>
+  </form>
+
+  <h2>What the page's own JavaScript sees</h2>
+  <div id="preview"></div>
+  <script>
+    // Simulates a framework that only learns about values from input/change events.
+    const seen = {};
+    document.getElementById('app').addEventListener('input', (e) => { seen[e.target.name || e.target.id] = e.target.value; render(); });
+    document.getElementById('app').addEventListener('change', (e) => { seen[e.target.name || e.target.id] = e.target.type === 'radio' ? (e.target.checked ? e.target.value : seen[e.target.name]) : e.target.value; render(); });
+    function render() { document.getElementById('preview').textContent = JSON.stringify(seen, null, 1); }
+    render();
+  </script>
+</body>
+</html>
