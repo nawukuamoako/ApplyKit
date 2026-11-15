@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyKit: Application Autofill and Tracker",
+  "short_name": "ApplyKit",
+  "version": "2.0.0",
+  "description": "Fills college and job applications with your saved answers, learns new question wordings, and tracks every application. Your data stays on your computer.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "ApplyKit",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle",
+      "js": [
+        "src/shared/choices.js",
+        "src/shared/fields.js",
+        "src/shared/matcher.js",
+        "src/shared/storage.js",
+        "src/content/dom.js",
+        "src/content/content.js"
+      ]
+    }
+  ],
+  "commands": {
+    "fill-page": {
+      "suggested_key": {
+        "default": "Alt+Shift+F",
+        "mac": "Alt+Shift+F"
+      },
+      "description": "Fill every matching field on this page"
+    }
+  }
+}
